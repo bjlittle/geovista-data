@@ -1,2 +1,2 @@
 # geovista-data
-GeoVista resources
+GeoVista resources and assets.

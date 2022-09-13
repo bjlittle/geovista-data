@@ -1,0 +1,65 @@
+name: ci-release
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    env:
+      GVD_VERSION_FNAME: "version.txt"
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: "calculate release version"
+        run: |
+          git pull
+          if [ -f "${GVD_VERSION_FNAME}" ]
+          then
+            GVD_VERSION=$(cat ${GVD_VERSION_FNAME})
+          else
+            GVD_VERSION="$(date +%Y.%m).0"
+            echo "GVD_BOOTSTRAP=1" >> ${GITHUB_ENV}
+          fi
+          GVD_DATE=$(echo ${GVD_VERSION} | cut -d. -f1-2)
+          GVD_SERIAL=$(echo ${GVD_VERSION} | cut -d. -f3)
+          NOW_DATE=$(date +%Y.%m)
+          NOW_SERIAL=0
+          if [ "${GVD_DATE}" == "${NOW_DATE}" ]
+          then
+            NOW_SERIAL=$(expr ${GVD_SERIAL} + 1)
+          fi
+          echo "GVD_VERSION=${NOW_DATE}.${NOW_SERIAL}" >> ${GITHUB_ENV}
+
+      - name: "store release version"
+        run: |
+          echo ${{ env.GVD_VERSION }} > ${GVD_VERSION_FNAME}
+          if [ -n "${GVD_BOOTSTRAP}" ]
+          then
+            git add ${GVD_VERSION_FNAME}
+          fi
+          git config user.name "GitHub Actions"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -am "Automated release for verison \"${GVD_VERSION}\""
+          git push  
+
+      - name: "perform release"
+        uses: softprops/action-gh-release@1e07f4398721186383de40550babbdf2b84acfc5
+        with:
+          tag_name: ${{ env.GVD_VERSION }}

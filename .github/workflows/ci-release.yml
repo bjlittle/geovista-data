@@ -33,19 +33,20 @@ jobs:
           if [ -f "${GVD_VERSION_FNAME}" ]
           then
             GVD_VERSION=$(cat ${GVD_VERSION_FNAME})
+            GVD_DATE=$(echo ${GVD_VERSION} | cut -d. -f1-2)
+            GVD_SERIAL=$(echo ${GVD_VERSION} | cut -d. -f3)
+            NOW_DATE=$(date +%Y.%m)
+            NOW_SERIAL=0
+            if [ "${GVD_DATE}" == "${NOW_DATE}" ]
+            then
+              NOW_SERIAL=$(expr ${GVD_SERIAL} + 1)
+            fi
+            GVD_VERSION="${NOW_DATE}.${NOW_SERIAL}"
           else
             GVD_VERSION="$(date +%Y.%m).0"
             echo "GVD_BOOTSTRAP=1" >> ${GITHUB_ENV}
           fi
-          GVD_DATE=$(echo ${GVD_VERSION} | cut -d. -f1-2)
-          GVD_SERIAL=$(echo ${GVD_VERSION} | cut -d. -f3)
-          NOW_DATE=$(date +%Y.%m)
-          NOW_SERIAL=0
-          if [ "${GVD_DATE}" == "${NOW_DATE}" ]
-          then
-            NOW_SERIAL=$(expr ${GVD_SERIAL} + 1)
-          fi
-          echo "GVD_VERSION=${NOW_DATE}.${NOW_SERIAL}" >> ${GITHUB_ENV}
+          echo "GVD_VERSION=${GVD_VERSION}" >> ${GITHUB_ENV}
 
       - name: "store release version"
         run: |
@@ -56,8 +57,8 @@ jobs:
           fi
           git config user.name "GitHub Actions"
           git config user.email "actions@users.noreply.github.com"
-          git commit -am "Automated release for verison \"${GVD_VERSION}\""
-          git push  
+          git commit -am "Automated release for version \"${GVD_VERSION}\""
+          git push
 
       - name: "perform release"
         uses: softprops/action-gh-release@1e07f4398721186383de40550babbdf2b84acfc5

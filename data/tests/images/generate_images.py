@@ -55,7 +55,9 @@ with open(fname, "w", encoding="utf-8") as fh:
     fh.write(
         "This directory contains test images generated on the following platform:\n"
     )
+    fh.write("```bash\n")
     fh.write(f"{str(Report())}\n")
+    fh.write("```\n")
 
 print('\nUpdated report details in "README.md"\n')
 print("👍 All done!")

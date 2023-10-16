@@ -3,9 +3,10 @@
 Please **do not** manually edit this `README.md` as the contents will be overwritten by the `generate_images.py` script.
 
 This directory contains test images generated on the following platform:
+```bash
 
 ----------------------------------------------------------------------------------------
-  Date: Mon Oct 16 12:35:15 2023 BST
+  Date: Mon Oct 16 12:46:10 2023 BST
 
                  OS : Linux
              CPU(s) : 4
@@ -38,3 +39,4 @@ click-default-group : 1.2.4
         fastparquet : 2023.8.0
              pandas : 2.1.0
 ----------------------------------------------------------------------------------------
+```

@@ -9,7 +9,6 @@ from pytest_pyvista import VerifyImageCache
 
 import geovista as gv
 import geovista.examples
-from geovista.cache import CACHE
 from geovista.report import Report
 
 
@@ -39,7 +38,6 @@ for i, script in enumerate(SCRIPTS):
         flush=True,
     )
     module = importlib.import_module(f"geovista.examples.{script}")
-    _ = CACHE.fetch(f"tests/images/{script}.png")
     verify_image_cache = VerifyImageCache(f"test_{script}", cache_dir)
     verify_image_cache.add_missing_images = True
     pv.global_theme.before_close_callback = verify_image_cache

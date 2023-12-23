@@ -1,26 +1,24 @@
 """Generate test images."""
 import importlib
 from pathlib import Path
-import pkgutil
 import shutil
 
 import pyvista as pv
 from pytest_pyvista import VerifyImageCache
 
 import geovista as gv
+from geovista.common import get_modules
 import geovista.examples
 from geovista.report import Report
 
 
-SCRIPTS = sorted(
-    [submodule.name for submodule in pkgutil.iter_modules(gv.examples.__path__)]
-)
+EXAMPLES = get_modules("geovista.examples")
 
 pv.global_theme.load_theme(pv.plotting.themes._TestingTheme())
 pv.OFF_SCREEN = True
 gv.GEOVISTA_IMAGE_TESTING = True
 
-n_scripts: int = len(SCRIPTS)
+n_scripts: int = len(EXAMPLES)
 width: int = len(str(n_scripts))
 
 cache_dir = Path(__file__).parent.resolve() / "image_cache"
@@ -31,7 +29,7 @@ if not cache_dir.exists():
 
 print(f'\nGenerating {n_scripts} test images in "{cache_dir} ...')
 
-for i, script in enumerate(SCRIPTS):
+for i, script in enumerate(EXAMPLES):
     print(
         f'[{i+1:0{width}d}/{n_scripts}] Generating image for "{script}" example ... ',
         end="",

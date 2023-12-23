@@ -36,7 +36,8 @@ for i, script in enumerate(EXAMPLES):
         flush=True,
     )
     module = importlib.import_module(f"geovista.examples.{script}")
-    verify_image_cache = VerifyImageCache(f"test_{script}", cache_dir)
+    safe = script.replace(".", "__")
+    verify_image_cache = VerifyImageCache(f"test_{safe}", cache_dir)
     verify_image_cache.add_missing_images = True
     pv.global_theme.before_close_callback = verify_image_cache
     module.main()

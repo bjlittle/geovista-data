@@ -15,6 +15,7 @@ from geovista.report import Report
 EXAMPLES = get_modules("geovista.examples")
 
 pv.global_theme.load_theme(pv.plotting.themes._TestingTheme())
+pv.global_theme.window_size = [450, 300]
 pv.OFF_SCREEN = True
 gv.GEOVISTA_IMAGE_TESTING = True
 

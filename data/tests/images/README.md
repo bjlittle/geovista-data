@@ -6,7 +6,7 @@ This directory contains test images generated on the following platform:
 ```bash
 
 ----------------------------------------------------------------------------------------
-  Date: Mon Dec 25 00:03:23 2023 GMT
+  Date: Tue Jan 09 14:36:59 2024 GMT
 
                   OS : Linux
               CPU(s) : 4
@@ -24,10 +24,10 @@ This directory contains test images generated on the following platform:
  click-default-group : 1.2.4
              cmocean : 3.0.3
             colorcet : 3.0.1
-            geovista : 0.5.0.dev138
+            geovista : 0.5.0.dev156
           matplotlib : 3.8.2
              netcdf4 : 1.6.5
-               numpy : 1.26.2
+               numpy : 1.26.3
         platformdirs : 4.1.0
                pooch : 1.8.0
             pykdtree : 1.3.10
@@ -40,9 +40,9 @@ This directory contains test images generated on the following platform:
 jupyter_server_proxy : 4.1.0
         nest_asyncio : 1.5.8
               pandas : 2.1.4
-               trame : 3.4.0
-        trame_client : 2.14.1
-        trame_server : 2.13.1
+               trame : 3.5.0
+        trame_client : 2.14.2
+        trame_server : 2.14.0
            trame_vtk : 2.6.3
 ----------------------------------------------------------------------------------------
 ```

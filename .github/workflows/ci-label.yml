@@ -1,0 +1,14 @@
+# Reference:
+#   - https://github.com/actions/labeler
+
+name: ci-label
+
+on:
+  pull_request_target:
+    types: [opened, edited, reopened]
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/labeler@v5

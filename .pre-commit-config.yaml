@@ -25,3 +25,10 @@ repos:
     - id: no-commit-to-branch
       # Trims trailing whitespace
     - id: trailing-whitespace
+
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.27.3
+    hooks:
+      - id: check-dependabot
+      - id: check-github-actions
+      - id: check-github-workflows

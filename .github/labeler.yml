@@ -1,0 +1,28 @@
+'gha':
+- any:
+  - changed-files:
+    - any-glob-to-any-file: '.github/**/*'
+'images':
+- any:
+  - changed-files:
+    - any-glob-to-any-file: 'assets/tests/images/**/*'
+'infrastructure':
+- any:
+  - changed-files:
+    - any-glob-to-any-file: '*'
+'natural earth':
+- any:
+  - changed-files:
+    - any-glob-to-any-file: 'assets/natural_earth/**/*'
+'pantry data':
+- any:
+  - changed-files:
+    - any-glob-to-any-file: 'assets/pantry/data/**/*'
+'pantry meshes':
+- any:
+  - changed-files:
+    - any-glob-to-any-file: 'assets/pantry/meshes/**/*'
+'pantry textures':
+- any:
+  - changed-files:
+    - any-glob-to-any-file: 'assets/pantry/textures/**/*'

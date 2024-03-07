@@ -6,7 +6,7 @@ This directory contains test images generated on the following platform:
 ```bash
 
 ----------------------------------------------------------------------------------------
-  Date: Wed Mar 06 08:36:15 2024 GMT
+  Date: Thu Mar 07 23:41:05 2024 GMT
 
                   OS : Linux
               CPU(s) : 4
@@ -40,6 +40,7 @@ This directory contains test images generated on the following platform:
              IPython : 8.22.1
          fastparquet : 2024.2.0
 jupyter_server_proxy : 4.1.0
+              meshio : 5.3.5
         nest_asyncio : 1.6.0
               pandas : 2.2.1
                trame : 3.5.2

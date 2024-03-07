@@ -29,4 +29,4 @@
 'rasters':
 - any:
   - changed-files:
-    - any-glob-to-any-file: 'assets/raster/**/*'
+    - any-glob-to-any-file: 'assets/rasters/**/*'

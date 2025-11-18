@@ -77,4 +77,3 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           token: ${{ secrets.GEOVISTA_BOT_TOKEN }}
           body: ${{ steps.verify.outputs.message }}
-
